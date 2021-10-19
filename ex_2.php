@@ -51,7 +51,7 @@ require_once("js_css_header.php");
                                     <div class="bootstrap-select fm-cmp-mg">
                                         <select class="selectpicker" data-live-search="true" id="select_dept" name="select_dept">
                                             <option value="" style="color: #999;" selected>Selected Room Type...</option>
-                                            <?
+                                            <?php
                                             $strSQL_room_type = "SELECT room_name FROM room_type group by room_name";
                                             $objQuery_room_type = mysqli_query($db_con, $strSQL_room_type) or die("Error Query [" . $strSQL_room_type . "]");
                                             while ($objResult_room_type = mysqli_fetch_array($objQuery_room_type, MYSQLI_ASSOC)) {
