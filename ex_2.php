@@ -49,14 +49,14 @@ require_once("js_css_header.php");
                                         <i class="fa fa-home"></i>
                                     </div>
                                     <div class="bootstrap-select fm-cmp-mg">
-                                        <select class="selectpicker" data-live-search="true" id="select_dept" name="select_dept">
+                                        <select class="selectpicker" data-live-search="true" id="select_room_name" name="select_room_name">
                                             <option value="" style="color: #999;" selected>Selected Room Type...</option>
                                             <?php
-                                            $strSQL_room_type = "SELECT room_name FROM room_type group by room_name";
+                                            $strSQL_room_type = "SELECT room_name, room_id FROM room_type ";
                                             $objQuery_room_type = mysqli_query($db_con, $strSQL_room_type) or die("Error Query [" . $strSQL_room_type . "]");
                                             while ($objResult_room_type = mysqli_fetch_array($objQuery_room_type, MYSQLI_ASSOC)) {
                                             ?>
-                                                <option value="<?= $objResult_room_type["room_name"]; ?>"><?= $objResult_room_type["room_name"]; ?></option>
+                                                <option value="<?= $objResult_room_type["room_id"]; ?>"><?= $objResult_room_type["room_name"]; ?></option>
                                             <?
                                             }
                                             ?>
@@ -72,13 +72,13 @@ require_once("js_css_header.php");
                                     <div class="form-group nk-datapk-ctm form-elet-mg" id="data_room">
                                         <div class="input-group date nk-int-st">
                                             <span class="input-group-addon"></span>
-                                            <input type="text" class="form-control" id="year_picker" placeholder="select date">
+                                            <input type="text" class="form-control" id="date_room" placeholder="select date">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                <button class="btn btn-primary btn-sm hec-button waves-effect" onclick="_onget()" type="button">Get Room Detail</button>
+                                <button class="btn btn-primary btn-sm hec-button waves-effect" onclick="_ongetApi()" type="button">Get Room Detail</button>
                                 <a href="index.php" class="btn btn-success btn-sm hec-button waves-effect"  type="button">To Index Page</a>
                             </div>
                         </div>
@@ -132,86 +132,38 @@ require_once("js_css_header.php");
     <script src="js/main.js"></script>
     <script>
         $(document).ready(function() {
-            _load_room_type();
+           // _load_room_type();
         });
 
         function _load_room_type() {
             $.ajax({
-
                 url: "http://34.87.142.215/aspire-project/public/booking-box/api-test",
                 success: function(data) {
                     console.log(data);
-                    var result = JSON.parse(data);
-                    callinTable(result);
                 }
             });
 
-
-            // function callinTable(data) {
-            //     var table = $("#room_detail").DataTable({
-            //         "bDestroy": true,
-            //         columnDefs: [{
-            //                 orderable: true,
-            //                 className: 'reorder',
-            //                 targets: [1, 2, 3]
-            //             },
-            //             {
-            //                 orderable: false,
-            //                 targets: '_all'
-            //             }
-            //         ],
-            //         responsive: true,
-            //         autoFill: true,
-            //         colReorder: true,
-            //         keys: true,
-            //         select: true,
-            //         processing: true,
-            //         serverside: true,
-            //         data: data,
-            //         columns: [{
-            //                 data: 'no'
-            //             },
-            //             {
-            //                 data: 'room_name'
-            //             },
-            //             {
-            //                 data: 'room_id'
-            //             },
-            //             {
-            //                 data: 'date_issue'
-            //             }
-            //         ]
-            //     });
-
-            // }
         }
 
         function _ongetApi() {
-            $.ajax({
-                type: 'POST',
-                url: '<?= $CFG->src; ?>/save_room_type.php',
-                data: {
-                    room_type_name_ajax: $("#type_name").val(),
-                    room_type_id_ajax: $("#type_id").val(),
-                },
-                success: function(response) {
+            console.log($("#select_room_name").val());
+            console.log($("#date_room").val());
+            // $.ajax({
+            //     type: 'POST',
+            //     url: 'http://34.87.142.215/aspire-project/public/booking-box/api-test',
+            //     data: {
+            //         room_type_id: $("#select_room_name").val(),
+            //         date: $("#date_room").val(),
+            //     },
+            //     success: function(response) {
 
-                    if (response == 'SUCCESS') {
-                        alert('SAVE SUCCESS');
-                        _load_room_type();
-                        $("#type_name").val('');
-                        $("#type_id").val('');
-                    } else if (response == 'FAILED') {
-                        alert('SAVE FAILED');
-                        _load_room_type();
-                    }
 
-                },
-                error: function() {
-                    //dialog ctrl
-                    alert('Network Err')
-                }
-            });
+            //     },
+            //     error: function() {
+            //         //dialog ctrl
+            //         alert('Network Err')
+            //     }
+            // });
         }
     </script>
 </body>
