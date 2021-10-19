@@ -176,7 +176,7 @@ require_once("js_css_header.php");
         function _onsave() {
             $.ajax({
                 type: 'POST',
-                url: '<?php $CFG->src; ?>/save_room_type.php',
+                url: 'src/save_room_type.php',
                 data: {
                     room_type_name_ajax: $("#type_name").val(),
                     room_type_id_ajax: $("#type_id").val(),
