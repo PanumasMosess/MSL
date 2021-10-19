@@ -125,7 +125,7 @@ require_once("js_css_header.php");
 
         function _load_room_type() {
             $.ajax({
-                url: "<?= $CFG->src; ?>/load_room.php",
+                url: "src/load_room.php",
                 success: function(data) {
                     console.log(data);
                     var result = JSON.parse(data);
