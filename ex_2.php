@@ -142,7 +142,7 @@ require_once("js_css_header.php");
                 },
                 error: function() {
                     //dialog ctrl
-                    alert('Network Err')
+                    alert(error)
                 }
             });
         }
