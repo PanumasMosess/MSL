@@ -140,7 +140,7 @@ require_once("js_css_header.php");
                     document.getElementById("room_id").innerHTML="ID: " + response.room_left;
                     document.getElementById("room_price").innerHTML="Price: " + response.price;
                 },
-                error: function() {
+                error: function(error) {
                     //dialog ctrl
                     alert(error)
                 }
