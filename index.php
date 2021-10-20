@@ -67,7 +67,7 @@ require_once("js_css_header.php");
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                 <button class="btn btn-primary btn-sm hec-button waves-effect" onclick="_onsave()" type="button">Save Room Type</button>
-                                <a href="ex_2.php" class="btn btn-success btn-sm hec-button waves-effect"  type="button">To Next Page</a>
+                                <a href="ex_2.php" class="btn btn-success btn-sm hec-button waves-effect"  type="button">To Next TEST</a>
                             </div>
                         </div>
                         <div class="row">

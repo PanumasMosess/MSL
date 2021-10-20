@@ -79,24 +79,15 @@ require_once("js_css_header.php");
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                 <button class="btn btn-primary btn-sm hec-button waves-effect" onclick="_ongetApi()" type="button">Get Room Detail</button>
-                                <a href="index.php" class="btn btn-success btn-sm hec-button waves-effect"  type="button">To Index Page</a>
+                                <a href="index.php" class="btn btn-success btn-sm hec-button waves-effect"  type="button">To TEST1 Page</a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="invoice-sp">
-                                    <table class="table table-hover" id="room_table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Room Date</th>
-                                                <th>Room Left</th>
-                                                <th>Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
+                                    <span id="room_date">Date: </span><br/>
+                                    <span id="room_id">ID: </span><br/>
+                                    <span id="room_price">Price: </span><br/>
                                 </div>
                             </div>
                         </div>
@@ -135,35 +126,25 @@ require_once("js_css_header.php");
            // _load_room_type();
         });
 
-        function _load_room_type() {
-            $.ajax({
-                url: "http://34.87.142.215/aspire-project/public/booking-box/api-test",
-                success: function(data) {
-                    console.log(data);
-                }
-            });
-
-        }
 
         function _ongetApi() {
-            console.log($("#select_room_name").val());
-            console.log($("#date_room").val());
-            // $.ajax({
-            //     type: 'POST',
-            //     url: 'http://34.87.142.215/aspire-project/public/booking-box/api-test',
-            //     data: {
-            //         room_type_id: $("#select_room_name").val(),
-            //         date: $("#date_room").val(),
-            //     },
-            //     success: function(response) {
-
-
-            //     },
-            //     error: function() {
-            //         //dialog ctrl
-            //         alert('Network Err')
-            //     }
-            // });
+            $.ajax({
+                type: 'POST',
+                url: 'http://34.87.142.215/aspire-project/public/booking-box/api-test',
+                data: {
+                    room_type_id: $("#select_room_name").val(),
+                    date: $("#date_room").val(),
+                },
+                success: function(response) {
+                    document.getElementById("room_date").innerHTML="Date: " + response.date;
+                    document.getElementById("room_id").innerHTML="ID: " + response.room_left;
+                    document.getElementById("room_price").innerHTML="Price: " + response.price;
+                },
+                error: function() {
+                    //dialog ctrl
+                    alert('Network Err')
+                }
+            });
         }
     </script>
 </body>
