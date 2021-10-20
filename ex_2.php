@@ -130,7 +130,7 @@ require_once("js_css_header.php");
         function _ongetApi() {
             $.ajax({
                 type: 'POST',
-                url: 'http://34.87.142.215/aspire-project/public/booking-box/api-test',
+                url: '//34.87.142.215/aspire-project/public/booking-box/api-test',
                 data: {
                     room_type_id: $("#select_room_name").val(),
                     date: $("#date_room").val(),
